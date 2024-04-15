@@ -3,12 +3,13 @@
         Found: ... cards
     </div>
     <div class="db-card-container">
-        <CardComponent/>
+        <CardComponent v-for="card in store.cards" :key="card.id" :id="card.id" :name="card.name" :archetype="card.archetype" :image="card.card_images[0].image_url"/>
     </div>
     
 </template>
 
 <script>
+import {store} from '../store.js';
 import CardComponent from './CardComponent.vue';
     export default {
         name: 'CardListComponent',
@@ -17,7 +18,7 @@ import CardComponent from './CardComponent.vue';
         },
         data(){
             return{
-
+                store
             }
         }
     }
@@ -39,10 +40,5 @@ import CardComponent from './CardComponent.vue';
         justify-content: space-between;
         flex-wrap: wrap;
         gap: 20px;
-    }
-
-    .db-card{
-        //width: calc(100% / 5 - 20px);
-        width: 170px;
     }
 </style>
