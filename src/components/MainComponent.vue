@@ -1,7 +1,7 @@
 <template>
     <div id="main">
-        <div class="db-container">
-            <div class="py-4">
+        <div class="db-container pb-4">
+            <div class="db-container py-4">
              search bar
             </div>
             <div class="db-container db-card-wrapper p-5">

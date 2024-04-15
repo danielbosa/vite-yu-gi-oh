@@ -19,7 +19,14 @@
 </script>
 
 <style lang="scss" scoped>
+@use '/src/assets/styles/partials/variables' as *;
+
+    *{
+        background-color: $light;
+    }
+
     span img{
         width: 100px;
+        padding: 20px;
     }
 </style>

@@ -1,6 +1,6 @@
 <template>
-    <div class="db-bg-dark db-txt-light p-2">
-        Found: ... cards
+    <div class="db-card-counts p-2">
+        Found {{this.store.cards.length}} cards
     </div>
     <div class="db-card-container">
         <CardComponent v-for="card in store.cards" :key="card.id" :id="card.id" :name="card.name" :archetype="card.archetype" :image="card.card_images[0].image_url"/>
@@ -27,12 +27,10 @@ import CardComponent from './CardComponent.vue';
 <style lang="scss" scoped>
 @use '/src/assets/styles/partials/variables' as *;
 
-    .db-bg-dark{
+    .db-card-counts{
         background-color: $bgdark;
-    }
-
-    .db-txt-light{
         color: $light;
+        font-weight: 900;
     }
 
     .db-card-container{
