@@ -5,7 +5,7 @@
              search bar
             </div>
             <div class="db-container db-card-wrapper p-5">
-
+                <CardListComponent/>
             </div>
         </div>
     </div>
@@ -13,10 +13,16 @@
 </template>
 
 <script>
+import CardListComponent from './CardListComponent.vue';
     export default {
         name: 'MainComponent',
-        data() {
-            
+        components: {
+            CardListComponent
+        },
+        data(){
+            return{
+
+            }
         }
     }
 </script>
@@ -34,6 +40,6 @@
     }
 
     .db-card-wrapper{
-        background-color: $bglight;
+        background-color: $light;
     }
 </style>
