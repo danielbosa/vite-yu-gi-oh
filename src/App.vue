@@ -1,6 +1,6 @@
 <template>
   <LoaderComponent v-if="this.store.loading"/>
-  <div v-if="!this.store.loading">
+  <div>
     <HeaderComponent/>
     <MainComponent @archSearch="setParams()"/>
   </div>
@@ -59,6 +59,8 @@ import LoaderComponent from './components/LoaderComponent.vue';
         this.store.loading = true; 
         axios.get(this.store.apiUrl + this.store.endPoint.archetype).then((res)=>{
           this.store.archetypeList = res.data.slice(0,10);
+          this.store.archetypeList.unshift(' ')
+          console.log(this.store.archetypeList)
         }).catch((error) =>{
             // handle error
            console.log(error);
