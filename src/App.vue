@@ -2,7 +2,7 @@
   <LoaderComponent v-if="this.store.loading"/>
   <div v-if="!this.store.loading">
     <HeaderComponent/>
-    <MainComponent/>
+    <MainComponent @archSearch="setParams()"/>
   </div>
 </template>
 
@@ -26,11 +26,27 @@ import LoaderComponent from './components/LoaderComponent.vue';
       }
     },
     methods:{
+      setParams(){
+        if(this.store.archSearch){
+          this.store.options.params.archetype = this.store.archSearch;
+        } else {
+          delete this.store.options.params.archetype
+        };
+        this.getCards()
+      },
       getCards(){
         this.store.loading = true; 
-        axios.get(this.store.apiUrl).then((res)=>{
-          this.store.cards = res.data.data;
-          
+        axios.get(this.store.apiUrl + this.store.endPoint.card, this.store.options).then((res)=>{
+          this.store.cards = res.data.data.map((card)=>{
+            return{
+              id: card.id,
+              name: card.name,
+              image: card.card_images[0].image_url,
+              status: card.archetype,
+              text: card.species,
+            }
+          });
+          this.store.total = res.data.meta.total_rows;
         }).catch((error) =>{
             // handle error
            console.log(error);
@@ -38,10 +54,23 @@ import LoaderComponent from './components/LoaderComponent.vue';
         }).finally(() =>{
           this.store.loading = false;
         });
-      }
+      },
+      getArchetypes(){
+        this.store.loading = true; 
+        axios.get(this.store.apiUrl + this.store.endPoint.archetype).then((res)=>{
+          this.store.archetypeList = res.data.slice(0,10);
+        }).catch((error) =>{
+            // handle error
+           console.log(error);
+           this.store.error.message = error.message;
+        }).finally(() =>{
+          this.store.loading = false;
+        });
+      },
     },
     created(){
       this.getCards();
+      this.getArchetypes();
     }
   }
   

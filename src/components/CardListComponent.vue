@@ -1,9 +1,9 @@
 <template>
     <div class="db-card-counts p-2">
-        Found {{this.store.cards.length}} cards
+        Found {{ this.store.total }} cards
     </div>
     <div class="db-card-container">
-        <CardComponent v-for="card in store.cards" :key="card.id" :id="card.id" :name="card.name" :archetype="card.archetype" :image="card.card_images[0].image_url"/>
+        <CardComponent v-for="card in store.cards" :key="card.id" :id="card.id" :name="card.name" :archetype="card.archetype" :image="card.image"/>
     </div>
     
 </template>

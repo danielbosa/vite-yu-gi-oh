@@ -1,8 +1,12 @@
 <template>
-    <div id="main">
+    <div id="main" >
         <div class="db-container pb-4">
             <div class="db-container py-4">
-             search bar
+             <select v-model="store.archSearch" @change="$emit('archSearch')">
+                <option v-for="archetype in store.archetypeList" :value="archetype.archetype_name">
+                    {{ archetype.archetype_name }}
+                </option>
+             </select>
             </div>
             <div class="db-container db-card-wrapper p-5">
                 <CardListComponent/>
@@ -13,6 +17,7 @@
 </template>
 
 <script>
+import { store } from '@/store';
 import CardListComponent from './CardListComponent.vue';
     export default {
         name: 'MainComponent',
@@ -21,7 +26,7 @@ import CardListComponent from './CardListComponent.vue';
         },
         data(){
             return{
-
+                store
             }
         }
     }
@@ -41,5 +46,9 @@ import CardListComponent from './CardListComponent.vue';
 
     .db-card-wrapper{
         background-color: $light;
+    }
+
+    .loading{
+        overflow-y: hidden;
     }
 </style>
