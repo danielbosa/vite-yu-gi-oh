@@ -1,19 +1,18 @@
 <template>
     <div class="db-card">
-            <img class="img-fluid" :src="image" :alt="name">
-            <div class="db-card-info text-center">
-                <br>
-                <div class="db-card-title">
+        <img class="img-fluid" :src="image" :alt="name">
+        <div class="db-card-info text-center">
+            <br>
+            <div class="db-card-title">
                     {{ name }}
-                </div>
-                <br>
-                <div>
-                    {{ archetype }}
-                </div>
-                <br>
             </div>
-            
+            <br>
+            <div>
+                {{ archetype }}
+            </div>
+            <br>
         </div>
+    </div>
 </template>
 
 <script>

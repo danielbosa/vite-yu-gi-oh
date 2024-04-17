@@ -46,6 +46,7 @@ import LoaderComponent from './components/LoaderComponent.vue';
               text: card.species,
             }
           });
+          console.log(this.store.cards)
           this.store.total = res.data.meta.total_rows;
         }).catch((error) =>{
             // handle error
